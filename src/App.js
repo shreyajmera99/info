@@ -2,22 +2,24 @@ import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import News from './components/News';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      loading: false
+      loading: true, // Set initial loading state to true
     };
   }
+
   componentDidMount() {
     // Simulating API loading for 3 seconds
     setTimeout(() => {
       this.setState({ loading: false });
     }, 3000);
   }
+
   render() {
+    const { loading } = this.state;
+
     return (
       <>
         <div>
@@ -33,7 +35,6 @@ export default class App extends Component {
               <Route path="/sports" element={<News key="sports" country="in" category="sports" />} />
             </Routes>
           </Router>
-
         </div>
       </>
     );
